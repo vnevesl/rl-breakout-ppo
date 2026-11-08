@@ -7,6 +7,22 @@ Aprendizado por Reforço (IBMEC 2026/2, Prof. Pedro Calais).
 A entrega é o notebook [`notebooks/breakout_ppo.ipynb`](notebooks/breakout_ppo.ipynb), organizado
 pelos itens **a–m** do enunciado.
 
+## Resultados
+
+| Política | Pontos por partida (20 partidas) |
+|---|---|
+| Aleatória | 1,7 ± 1,8 |
+| **PPO `best_model`** (8,5M passos) | **355 ± 38** (máx. 423) |
+| PPO `final_model` (10M passos) | 366 ± 50 |
+
+- 10M passos em **3,7 h** num MacBook Air M3 (GPU via MPS).
+- Média de 30 pontos ("minimamente inteligente") após **1,33M passos / ~33 min**.
+- O agente descobriu sozinho a estratégia do **túnel**: abre um buraco na lateral e deixa a bola
+  quebrar o muro por cima.
+- Rede: Nature CNN com **1.686.693 parâmetros**.
+
+![curvas](reports/figures/ppo_breakout_curves.png)
+
 ## Estrutura
 
 ```

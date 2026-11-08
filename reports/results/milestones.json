@@ -1,0 +1,46 @@
+{
+  "elapsed_seconds": 13379.1,
+  "milestones": {
+    "5": {
+      "timesteps": 151200,
+      "wall_clock_hours": 0.068,
+      "mean_reward_last_100": 5.03
+    },
+    "10": {
+      "timesteps": 239032,
+      "wall_clock_hours": 0.115,
+      "mean_reward_last_100": 10.0
+    },
+    "20": {
+      "timesteps": 881848,
+      "wall_clock_hours": 0.385,
+      "mean_reward_last_100": 20.08
+    },
+    "30": {
+      "timesteps": 1326680,
+      "wall_clock_hours": 0.548,
+      "mean_reward_last_100": 30.0
+    },
+    "50": {
+      "timesteps": 2112040,
+      "wall_clock_hours": 0.821,
+      "mean_reward_last_100": 50.01
+    },
+    "100": {
+      "timesteps": 3353024,
+      "wall_clock_hours": 1.256,
+      "mean_reward_last_100": 100.55
+    },
+    "200": {
+      "timesteps": 5036616,
+      "wall_clock_hours": 1.856,
+      "mean_reward_last_100": 200.06
+    },
+    "300": {
+      "timesteps": 7409664,
+      "wall_clock_hours": 2.814,
+      "mean_reward_last_100": 300.41
+    }
+  },
+  "last_timesteps": 10000384
+}
