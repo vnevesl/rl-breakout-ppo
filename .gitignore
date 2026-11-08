@@ -1,0 +1,13 @@
+# ambiente
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.DS_Store
+
+# artefatos de treino (grandes; o modelo final vai em reports/models/ ou num Release)
+runs/
+*.zip
+!reports/models/*.zip

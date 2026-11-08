@@ -1,0 +1,47 @@
+[project]
+name = "breakout-rl"
+version = "0.1.0"
+description = "Agente PPO (Stable-Baselines3) treinado para jogar Atari Breakout — trabalho final de Aprendizado por Reforço (IBMEC 2026/2)."
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "stable-baselines3[extra]>=2.4",
+    "gymnasium[atari]>=1.0",
+    "ale-py>=0.10",
+    "torch>=2.3",
+    "tensorboard>=2.16",
+    "imageio>=2.34",
+    "imageio-ffmpeg>=0.5",
+    "pyyaml>=6.0",
+    "pillow>=10.0",
+    "pandas>=2.0",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+play = ["pygame>=2.5"]
+dev = ["pytest>=8.0", "ruff>=0.6", "jupyter>=1.0", "ipykernel>=6.29", "nbconvert>=7.0"]
+
+[project.scripts]
+breakout-train = "breakout_rl.train:main"
+breakout-record = "breakout_rl.record:main"
+breakout-evaluate = "breakout_rl.evaluate:main"
+breakout-play = "breakout_rl.play:main"
+breakout-model-info = "breakout_rl.model_info:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/breakout_rl"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

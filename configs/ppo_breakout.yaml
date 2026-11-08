@@ -1,0 +1,38 @@
+# Experimento principal: PPO no Breakout.
+# Hiperparâmetros baseados no RL Baselines3 Zoo (hyperparams/ppo.yml, seção "atari"),
+# que é o ajuste de referência para Atari citado em aula.
+name: ppo_breakout
+
+env:
+  env_id: ALE/Breakout-v5
+  n_envs: 8                       # base: 1  -> 8 jogos em paralelo, mais experiência por segundo
+  frame_stack: 4                  # base: sem stack -> o agente precisa ver a direção da bola
+  frameskip: 1                    # base: 4 (v5) + 4 (AtariWrapper) = 16; aqui o wrapper faz os 4
+  repeat_action_probability: 0.0  # sem "sticky actions", igual ao BreakoutNoFrameskip-v4 do Zoo
+  terminal_on_life_loss: true
+  clip_reward: true
+  vec_env: subproc
+
+ppo:
+  policy: CnnPolicy
+  n_steps: 128          # base: 2048 (por env). 128 x 8 envs = 1024 passos por atualização
+  batch_size: 256       # igual à base
+  n_epochs: 4           # base: 10 (padrão do SB3)
+  learning_rate: 2.5e-4 # igual à base...
+  lr_schedule: linear   # ...mas decai linearmente até 0
+  clip_range: 0.1       # base: 0.2
+  clip_schedule: linear
+  gamma: 0.99
+  gae_lambda: 0.95
+  ent_coef: 0.01        # base: 0.0 -> bônus de entropia mantém exploração
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+
+train:
+  total_timesteps: 10000000   # base: 50.000 (Freeway é bem mais fácil)
+  seed: 42
+  device: auto
+  checkpoint_freq: 250000
+  eval_freq: 250000
+  eval_episodes: 5
+  smart_threshold: 30

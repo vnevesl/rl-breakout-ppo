@@ -1,0 +1,18 @@
+# Execução mínima para testar o pipeline de ponta a ponta (~1 min).
+name: smoke
+
+env:
+  n_envs: 2
+  vec_env: dummy
+
+ppo:
+  n_steps: 64
+  batch_size: 64
+  n_epochs: 1
+
+train:
+  total_timesteps: 2048
+  device: cpu
+  checkpoint_freq: 1024
+  eval_freq: 1024
+  eval_episodes: 1
