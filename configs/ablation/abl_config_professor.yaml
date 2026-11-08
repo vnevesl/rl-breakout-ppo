@@ -1,0 +1,28 @@
+# Ablação: config do código base (1 env, sem stack, frameskip duplicado, sticky 0.25).
+name: abl_config_professor
+env:
+  env_id: ALE/Breakout-v5
+  n_envs: 1
+  frame_stack: 1
+  frameskip: 4
+  repeat_action_probability: 0.25
+  terminal_on_life_loss: true
+  clip_reward: true
+  vec_env: dummy
+ppo:
+  policy: CnnPolicy
+  n_steps: 2048
+  batch_size: 256
+  n_epochs: 10
+  learning_rate: 0.00025
+  lr_schedule: constant
+  clip_range: 0.2
+  clip_schedule: constant
+  ent_coef: 0.0
+train:
+  total_timesteps: 1000000
+  seed: 42
+  device: auto
+  checkpoint_freq: 500000
+  eval_freq: 100000
+  eval_episodes: 5

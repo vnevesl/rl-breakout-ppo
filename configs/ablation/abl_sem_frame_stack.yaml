@@ -1,0 +1,32 @@
+# Ablação: nossa config SEM frame stacking (1 frame por observação).
+name: abl_sem_frame_stack
+env:
+  env_id: ALE/Breakout-v5
+  n_envs: 8
+  frame_stack: 1
+  frameskip: 1
+  repeat_action_probability: 0.0
+  terminal_on_life_loss: true
+  clip_reward: true
+  vec_env: subproc
+ppo:
+  policy: CnnPolicy
+  n_steps: 128
+  batch_size: 256
+  n_epochs: 4
+  learning_rate: 0.00025
+  lr_schedule: linear
+  clip_range: 0.1
+  clip_schedule: linear
+  gamma: 0.99
+  gae_lambda: 0.95
+  ent_coef: 0.01
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+train:
+  total_timesteps: 1000000
+  seed: 42
+  device: auto
+  checkpoint_freq: 500000
+  eval_freq: 100000
+  eval_episodes: 5

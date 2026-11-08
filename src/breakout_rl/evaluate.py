@@ -53,8 +53,12 @@ def main() -> None:
     ap.add_argument("--config", default="configs/ppo_breakout.yaml")
     ap.add_argument("--episodes", type=int, default=20)
     ap.add_argument("--deterministic", action="store_true")
+    ap.add_argument("--sticky", type=float,
+                    help="repeat_action_probability na avaliação (ex.: 0.25 = padrão do v5)")
     args = ap.parse_args()
     cfg = ExperimentConfig.from_yaml(args.config)
+    if args.sticky is not None:
+        cfg.env.repeat_action_probability = args.sticky
     print(json.dumps(evaluate(args.policy, cfg.env, args.episodes,
                               deterministic=args.deterministic), indent=2))
 

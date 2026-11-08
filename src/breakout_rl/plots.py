@@ -68,6 +68,30 @@ def plot_run(run_dir: Path, out_dir: Path) -> list[Path]:
     return paths
 
 
+def plot_compare(runs: dict[str, Path], out: Path, tag: str = "rollout/ep_rew_mean",
+                 max_step: float | None = None) -> Path:
+    """Sobrepõe a mesma métrica de vários experimentos (ex.: ablação)."""
+    fig, ax = plt.subplots(figsize=(9, 4.5))
+    for label, run_dir in runs.items():
+        df = load_scalars(Path(run_dir))
+        d = df[df["tag"] == tag]
+        if max_step is not None:
+            d = d[d["step"] <= max_step]
+        if d.empty:
+            continue
+        ax.plot(d["step"] / 1e6, d["value"], lw=1.6, label=label)
+    ax.set_xlabel("Passos do agente (milhões)")
+    ax.set_ylabel(TAGS.get(tag, tag))
+    ax.set_title(TAGS.get(tag, tag), loc="left", fontsize=11)
+    ax.grid(alpha=0.3)
+    ax.legend()
+    fig.tight_layout()
+    out.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(out, dpi=130)
+    plt.close(fig)
+    return out
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)

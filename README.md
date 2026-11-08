@@ -98,7 +98,7 @@ isso.
 
 | Decisão | Motivo |
 |---|---|
-| PPO (e não DQN) | é o algoritmo do código base; usa pouca memória (o replay buffer do DQN para Atari passa de 8 GB) |
+| PPO (e não DQN) | é o algoritmo do código base; usa pouca memória (o replay buffer do DQN para Atari, com 100 mil transições, ocupa ~3–6 GB, o que aperta um Mac de 8 GB) |
 | Hiperparâmetros do RL Zoo para Atari | ajuste de referência para PPO em Atari |
 | `frameskip=1` no `gym.make` | o `AtariWrapper` já pula 4 frames; o padrão do v5 resultaria em 16 |
 | Monitor antes do AtariWrapper | `ep_rew_mean` mostra a pontuação real da partida (5 vidas, sem clipping) |
