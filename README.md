@@ -21,8 +21,9 @@ enunciado.
 - Isso é **~11×** a referência humana do paper do DQN (31,8 pontos).
 - Fica na mesma ordem do **DQN da DeepMind** publicado na *Nature* (401 pontos com 50 milhões de
   frames). Este agente usou 40 milhões de frames num notebook.
-- Passou a referência humana com **33 minutos** de treino. O treino completo (10 milhões de passos)
-  levou **3,7 h** num MacBook Air M3.
+- Passou a referência humana com **33 minutos** de treino. **Tempo total de treino: ~4,7 h** num
+  MacBook Air M3: 3,7 h do treino principal de 10 milhões de passos (de onde vêm os resultados
+  abaixo) e ~1 h de treino extra feito à parte.
 - Descobriu **sozinho** a estratégia do **túnel**.
 
 ## O que o agente precisa aprender
